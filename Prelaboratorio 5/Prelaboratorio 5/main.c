@@ -40,6 +40,11 @@ ISR(ADC_vect) {
 		potValue1 = ADC; // Valor de respaldo
 		break;
 	}
+	// Cambia al siguiente canal (0 ? 1 ? 2 ? 0 ...)
+	adcChannel = (adcChannel + 1) % 3;
+	ADMUX = (ADMUX & 0xF0) | (adcChannel & 0x07); // Actualiza canal sin afectar la referencia
+	ADCSRA |= (1 << ADSC); // Inicia nueva conversión
+}
 
 
 int main(void) {
