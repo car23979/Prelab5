@@ -46,14 +46,18 @@ ISR(ADC_vect) {
 	ADCSRA |= (1 << ADSC); // Inicia nueva conversión
 }
 
-
+// Programa Principal
 int main(void) {
-	PWM_Init();
-	ADC_Init();
 	
-	while(1) {
-		uint16_t adc_value = ADC_Read(0);  // Leer ADC0
-		uint16_t pulse_width = ((adc_value * 1000UL) / 1023) + 1000;  // Escalar a 1000-2000
-		PWM_SetDutyCycle(pulse_width);
+	ADC_Init(); // Inicializa ADC
+	PWM_Init(); // Inicializa PWM (definido en PWM.c)
+	sei(); // Habilita interrupciones globales
+
+	while (1) {
+		// El valor del potenciómetro va de 0 a 1023 (10 bits), se escala a un pulso entre 500 y 2500 (?s)
+		// 500 + ((0-1023) * 2000 / 1023) ? [500, 2500]
+		setServo1(500 + (potValue1 * 2000UL / 1023)); // Controla el servo 1
+		setServo2(500 + (potValue2 * 2000UL / 1023)); // Controla el servo 2
+		setLED(potValue3 >> 2); // Controla el brillo del LED (1023 >> 2 = 255 máximo)
 	}
 }
