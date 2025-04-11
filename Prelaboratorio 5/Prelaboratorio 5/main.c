@@ -7,6 +7,7 @@
 
 // Encabezado
 #include "pwm.h"
+#include "pwm2.h"
 #include <avr/io.h>
 #include <avr/interrupt.h>
 
