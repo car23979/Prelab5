@@ -14,6 +14,16 @@
 volatile uint16_t potvalue1, potvalue2, potvalue3; // Variables para leer valores de los potenciometros
 volatile uint8_t adcChannel = 0;	// Canal actual de ADC
 
+// Configuración del Modulo ADC
+void ADC_Init() {
+	ADMUX = (1 << REFS0); // Selecciona VCC como referencia de voltaje
+	ADCSRA = (1 << ADEN)  // Habilita el ADC
+	| (1 << ADIE)  // Habilita interrupción por ADC
+	| (1 << ADPS2) | (1 << ADPS1) | (1 << ADPS0); // Prescaler 128
+	ADMUX |= (adcChannel & 0x07); // Selecciona canal inicial (PC0)
+	ADCSRA |= (1 << ADSC); // Inicia la primera conversión
+}
+
 
 int main(void) {
 	PWM_Init();
