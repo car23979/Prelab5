@@ -9,15 +9,15 @@
 #include "pwm.h"
 
 void PWM_Init() {
-	DDRB |= (1 << DDB1);  // Configura OC1A (PB1) como salida
-	
-	// Modo PWM Fase-Frecuencia Correcta con ICR1 como TOP
-	TCCR1A = (1 << COM1A1);          // Modo no-invertido
-	TCCR1B = (1 << WGM13) | (1 << CS11);  // Modo 8, prescaler 8
-	
-	ICR1 = 20000;  // Periodo de 20ms (50Hz)
-}
+	// Configura Timer1 (16 bits) para controlar servos
+	DDRB |= (1 << PINB1) | (1 << PINB2); // Define PB1 y PB2 como salidas
 
-void PWM_SetDutyCycle(uint16_t duty) {
-	OCR1A = duty;  // Establece el ciclo de trabajo
+	TCCR1A = (1 << COM1A1) | (1 << COM1B1) | (1 << WGM11); // Modo PWM Phase Correct, sin inversión
+	TCCR1B = (1 << WGM13) | (1 << CS11); // Prescaler 8, modo PWM con TOP = ICR1
+	ICR1 = 20000; // TOP ? 20,000 ciclos a 16 MHz/8 = 20 ms ? 50 Hz (frecuencia típica para servos)
+
+	// Configura Timer0 (8 bits) en modo Fast PWM para el control de LED
+	DDRD |= (1 << PIND5); // PD5 como salida
+	TCCR0A = (1 << COM0B1) | (1 << WGM01) | (1 << WGM00); // Fast PWM no invertido
+	TCCR0B = (1 << CS01) | (1 << CS00); // Prescaler 64 ? ~976 Hz
 }
