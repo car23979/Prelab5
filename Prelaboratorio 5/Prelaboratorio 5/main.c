@@ -12,7 +12,7 @@
 
 // Variables globales 
 volatile uint16_t potvalue1, potvalue2, potvalue3; // Variables para leer valores de los potenciometros
-
+volatile uint8_t adcChannel = 0;	// Canal actual de ADC
 
 
 int main(void) {
