@@ -24,6 +24,23 @@ void ADC_Init() {
 	ADCSRA |= (1 << ADSC); // Inicia la primera conversión
 }
 
+// RUTINA DE INTERRUPCIÓN DEL ADC
+ISR(ADC_vect) {
+	switch (adcChannel) {
+		case 0:
+		potValue1 = ADC; // Guarda lectura del primer potenciómetro
+		break;
+		case 1:
+		potValue2 = ADC; // Guarda lectura del segundo potenciómetro
+		break;
+		case 2:
+		potValue3 = ADC; // Guarda lectura del tercer potenciómetro
+		break;
+		default:
+		potValue1 = ADC; // Valor de respaldo
+		break;
+	}
+
 
 int main(void) {
 	PWM_Init();
