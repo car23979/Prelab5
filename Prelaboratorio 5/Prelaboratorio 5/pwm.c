@@ -21,3 +21,15 @@ void PWM_Init() {
 	TCCR0A = (1 << COM0B1) | (1 << WGM01) | (1 << WGM00); // Fast PWM no invertido
 	TCCR0B = (1 << CS01) | (1 << CS00); // Prescaler 64 ? ~976 Hz
 }
+
+void setServo1(uint16_t pulseWidth) {
+	OCR1A = pulseWidth; // Aplica pulso al canal A (PB1)
+}
+
+void setServo2(uint16_t pulseWidth) {
+	OCR1B = pulseWidth; // Aplica pulso al canal B (PB2)
+}
+
+void setLED(uint8_t brightness) {
+	OCR0B = brightness; // Ajusta el duty cycle del LED (PD5)
+}
