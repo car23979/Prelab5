@@ -5,9 +5,15 @@
  * Author : David Carranza
  */ 
 
+// Encabezado
 #include "pwm.h"
 #include <avr/io.h>
 #include <avr/interrupt.h>
+
+// Variables globales 
+volatile uint16_t potvalue1, potvalue2, potvalue3; // Variables para leer valores de los potenciometros
+
+
 
 int main(void) {
 	PWM_Init();
