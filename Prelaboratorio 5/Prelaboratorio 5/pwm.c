@@ -25,10 +25,6 @@ void setServo1(uint16_t pulseWidth) {
 	OCR1A = pulseWidth; // Aplica pulso al canal A (PB1)
 }
 
-void setServo2(uint16_t pulseWidth) {
-	OCR2B = 155 - ((pulseWidth + 64) / 128); // Aplica pulso al canal B (PB2)
-}
-
 void setLED(uint8_t brightness) {
 	OCR0B = brightness; // Ajusta el duty cycle del LED (PD5)
 }

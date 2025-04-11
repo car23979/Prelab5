@@ -13,6 +13,10 @@ void PWM2_Init() {
 	TCCR2A = (1 << COM2B1) | (1 << WGM20);
 	TCCR2B = (1 << WGM22) | (1 << CS22) | (1 << CS21) | (1 << CS20);  // Prescaler 1024
 	OCR2A = 155;
-	OCR2B = 155 - ((1500 + 64) / 128);
 	
+	OCR2B = 23;	
+}
+
+void setServo2(uint16_t pulseWidth) {
+	OCR2B = (uint8_t)((pulseWidth + 64) / 128); // Aplica pulso al canal B (PB2)
 }

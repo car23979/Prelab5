@@ -18,9 +18,6 @@ void PWM_Init();
 // Define la posición del servo 1 conectado a PB1
 void setServo1(uint16_t pulseWidth); // pulseWidth en microsegundos (500–2500 us)
 
-// Define la posición del servo 2 conectado a PB2
-void setServo2(uint16_t pulseWidth);
-
 // Ajusta el brillo del LED conectado a PD5
 void setLED(uint8_t brightness); // 0 = apagado, 255 = brillo máximo
 
