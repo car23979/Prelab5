@@ -11,7 +11,7 @@
 #include <avr/interrupt.h>
 
 // Variables globales 
-volatile uint16_t potvalue1, potvalue2, potvalue3; // Variables para leer valores de los potenciometros
+volatile uint16_t potValue1, potValue2, potValue3; // Variables para leer valores de los potenciometros
 volatile uint8_t adcChannel = 0;	// Canal actual de ADC
 
 // Configuración del Modulo ADC
