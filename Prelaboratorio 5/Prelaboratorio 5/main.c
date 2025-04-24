@@ -6,10 +6,12 @@
  */ 
 
 // Encabezado
-#include "pwm.h"
-#include "pwm2.h"
 #include <avr/io.h>
 #include <avr/interrupt.h>
+#include "pwm_init.h"
+#include "servo1.h"
+#include "servo2.h"
+#include "led.h"
 
 // Variables globales 
 volatile uint16_t potValue1, potValue2, potValue3; // Variables para leer valores de los potenciometros
