@@ -50,8 +50,8 @@ int main(void) {
 	while (1) {
 		// El valor del potenciómetro va de 0 a 1023 (10 bits), se escala a un pulso entre 500 y 2500 (?s)
 		// 500 + ((0-1023) * 2000 / 1023) ? [500, 2500]
-		setServo1(500 + (potValue1 * 2000UL / 1023)); // Controla el servo 1
-		setServo2(500 + (potValue2 * 2000UL / 1023)); // Controla el servo 2
-		setLED(potValue3 >> 2); // Controla el brillo del LED (1023 >> 2 = 255 máximo)
+		SERVO1_set(500 + (POTE1 * 2000UL / 1023)); // Controla el servo 1
+		SERVO2_set(500 + (POTE2 * 2000UL / 1023)); // Controla el servo 2
+		LED_set(POTE3 >> 2); // Controla el brillo del LED (1023 >> 2 = 255 máximo)
 	}
 }
