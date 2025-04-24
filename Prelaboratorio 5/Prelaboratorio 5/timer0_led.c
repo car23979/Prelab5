@@ -5,15 +5,34 @@
  *  Author: Admin
  */ 
 
+#include "LED_PWM.h"
 #include <avr/io.h>
-#include "timer0_led.h"
+#include <avr/interrupt.h>
 
-void Timer0_LED_Init(void) {
-	DDRD |= (1 << PIND5); // PD5 como salida
-	TCCR0A = (1 << COM0B1) | (1 << WGM01) | (1 << WGM00); // Fast PWM
-	TCCR0B = (1 << CS01) | (1 << CS00); // Prescaler 64
+volatile uint8_t contador_pwm = 0;
+volatile uint8_t duty_pwm = 128; // Duty inicial 50%
+
+void LED_PWM_Init(void) {
+	DDRD |= (1 << PD5); // Pin PD5 como salida (LED)
+
+	// Configurar Timer2 para overflow cada ~62.5us con prescaler de 64
+	TCCR2A = 0x00;                  // Modo Normal
+	TCCR2B = (1 << CS22);           // Prescaler 64
+	TIMSK2 = (1 << TOIE2);          // Habilitar interrupción por overflow
 }
 
-void LED_set(uint8_t brillo) {
-	OCR0B = brillo;
+void LED_Update_Duty(uint8_t dc) {
+	duty_pwm = dc;
+}
+
+ISR(TIMER2_OVF_vect) {
+	contador_pwm++;
+
+	if (contador_pwm == 0) {
+		PORTD |= (1 << PD5); // Encender LED al inicio del ciclo
+	}
+
+	if (contador_pwm >= duty_pwm) {
+		PORTD &= ~(1 << PD5); // Apagar LED cuando se cumpla duty
+	}
 }
