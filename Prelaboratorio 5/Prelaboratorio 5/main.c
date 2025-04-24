@@ -8,10 +8,10 @@
 // Encabezado
 #include <avr/io.h>
 #include <avr/interrupt.h>
-#include "pwm_init.h"
-#include "servo1.h"
-#include "servo2.h"
-#include "led.h"
+#include "timer0_led.h"
+#include "timer1_config.h"
+#include "timer1_servo1.h"
+#include "timer1_servo2.h"
 
 // Variables globales 
 volatile uint16_t POTE1, POTE2, POTE3;
@@ -42,9 +42,11 @@ ISR(ADC_vect) {
 
 // Programa Principal
 int main(void) {
-	
-	ADC_Init(); // Inicializa ADC
-	PWM_Init(); // Inicializa PWM (definido en PWM.c)
+	ADC_Init();
+	Timer1_Config_Init();
+    Timer1_Servo1_Init();
+    Timer1_Servo2_Init();
+    Timer0_LED_Init();
 	sei(); // Habilita interrupciones globales
 
 	while (1) {
