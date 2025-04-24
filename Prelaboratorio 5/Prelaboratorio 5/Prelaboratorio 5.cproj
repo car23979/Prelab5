@@ -129,6 +129,12 @@
     <Compile Include="pwm.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="pwm2.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="pwm2.h">
+      <SubType>compile</SubType>
+    </Compile>
   </ItemGroup>
   <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Compiler.targets" />
 </Project>
