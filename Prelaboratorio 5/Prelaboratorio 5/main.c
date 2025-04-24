@@ -14,8 +14,8 @@
 #include "led.h"
 
 // Variables globales 
-volatile uint16_t potValue1, potValue2, potValue3; // Variables para leer valores de los potenciometros
-volatile uint8_t adcChannel = 0;	// Canal actual de ADC
+volatile uint16_t POTE1, POTE2, POTE3;
+volatile uint8_t CANAL_ADC = 0;
 
 // Configuración del Modulo ADC
 void ADC_Init() {
