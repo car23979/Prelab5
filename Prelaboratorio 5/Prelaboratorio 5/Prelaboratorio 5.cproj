@@ -141,10 +141,10 @@
     <Compile Include="timer1_servo2.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="timer0_led.c">
+    <Compile Include="PWM3.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="timer0_led.h">
+    <Compile Include="PWM3.h">
       <SubType>compile</SubType>
     </Compile>
   </ItemGroup>

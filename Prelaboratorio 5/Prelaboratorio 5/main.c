@@ -8,7 +8,7 @@
 // Encabezado
 #include <avr/io.h>
 #include <avr/interrupt.h>
-#include "LED_PWM.h"
+#include "PWM3.h"
 #include "timer1_config.h"
 #include "timer1_servo1.h"
 #include "timer1_servo2.h"
@@ -46,7 +46,7 @@ int main(void) {
 	Timer1_Config_Init();
     Timer1_Servo1_Init();
     Timer1_Servo2_Init();
-    Timer0_LED_Init();
+    PWM3_Init();
 	sei(); // Habilita interrupciones globales
 
 	while (1) {
@@ -54,6 +54,7 @@ int main(void) {
 		// 500 + ((0-1023) * 2000 / 1023) ? [500, 2500]
 		SERVO1_set(500 + (POTE1 * 2000UL / 1023)); // Controla el servo 1
 		SERVO2_set(500 + (POTE2 * 2000UL / 1023)); // Controla el servo 2
-		LED_set(POTE3 >> 2); // Controla el brillo del LED (1023 >> 2 = 255 máximo)
+		update_DutyCycle3(POTE3 >> 2); // Escala ADC 0–1023 a 0–255
+
 	}
 }
