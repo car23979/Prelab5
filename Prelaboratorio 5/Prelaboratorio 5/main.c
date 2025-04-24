@@ -29,19 +29,10 @@ void ADC_Init() {
 
 // RUTINA DE INTERRUPCIÓN DEL ADC
 ISR(ADC_vect) {
-	switch (adcChannel) {
-		case 0:
-		potValue1 = ADC; // Guarda lectura del primer potenciómetro
-		break;
-		case 1:
-		potValue2 = ADC; // Guarda lectura del segundo potenciómetro
-		break;
-		case 2:
-		potValue3 = ADC; // Guarda lectura del tercer potenciómetro
-		break;
-		default:
-		potValue1 = ADC; // Valor de respaldo
-		break;
+	switch (CANAL_ADC) {
+		case 0: POTE1 = ADC; break;
+		case 1: POTE2 = ADC; break;
+		case 2: POTE3 = ADC; break;
 	}
 	// Cambia al siguiente canal (0 ? 1 ? 2 ? 0 ...)
 	adcChannel = (adcChannel + 1) % 3;
