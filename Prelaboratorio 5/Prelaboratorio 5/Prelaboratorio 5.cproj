@@ -123,16 +123,28 @@
     <Compile Include="main.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="pwm.c">
+    <Compile Include="timer1_config.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="pwm.h">
+    <Compile Include="timer1_config.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="pwm2.c">
+    <Compile Include="timer1_servo1.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="pwm2.h">
+    <Compile Include="timer1_servo1.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="timer1_servo2.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="timer1_servo2.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="timer0_led.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="timer0_led.h">
       <SubType>compile</SubType>
     </Compile>
   </ItemGroup>
