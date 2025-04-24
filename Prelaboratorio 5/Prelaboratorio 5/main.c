@@ -35,8 +35,8 @@ ISR(ADC_vect) {
 		case 2: POTE3 = ADC; break;
 	}
 	// Cambia al siguiente canal (0 ? 1 ? 2 ? 0 ...)
-	adcChannel = (adcChannel + 1) % 3;
-	ADMUX = (ADMUX & 0xF0) | (adcChannel & 0x07); // Actualiza canal sin afectar la referencia
+	CANAL_ADC = (CANAL_ADC + 1) % 3;
+	ADMUX = (ADMUX & 0xF0) | (CANAL_ADC & 0x07); // Actualiza canal sin afectar la referencia
 	ADCSRA |= (1 << ADSC); // Inicia nueva conversión
 }
 
