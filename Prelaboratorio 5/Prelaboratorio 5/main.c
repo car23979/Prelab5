@@ -23,7 +23,7 @@ void ADC_Init() {
 	ADCSRA = (1 << ADEN)  // Habilita el ADC
 	| (1 << ADIE)  // Habilita interrupción por ADC
 	| (1 << ADPS2) | (1 << ADPS1) | (1 << ADPS0); // Prescaler 128
-	ADMUX |= (adcChannel & 0x07); // Selecciona canal inicial (PC0)
+	ADMUX |= (CANAL_ADC & 0x07); // Selecciona canal inicial (PC0)
 	ADCSRA |= (1 << ADSC); // Inicia la primera conversión
 }
 
