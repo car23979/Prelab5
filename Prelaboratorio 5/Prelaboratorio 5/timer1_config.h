@@ -9,6 +9,7 @@
 #ifndef TIMER1_CONFIG_H_
 #define TIMER1_CONFIG_H_
 
+void Timer1_Config_Init(void); // Configura solo Timer1 para los servos
 
 
 
