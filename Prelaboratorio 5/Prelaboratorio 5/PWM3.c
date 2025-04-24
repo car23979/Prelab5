@@ -17,7 +17,7 @@ void PWM3_Init(void){
 	TCCR0B = (1 << CS01) | (1 << CS00);
 
 	TIMSK0 = (1 << TOIE0);  // Habilitar interrupción por overflow
-	TCNT0 = 255;
+	TCNT0 = 0;
 }
 
 void update_DutyCycle3(uint16_t dutyCycle){
@@ -37,5 +37,5 @@ ISR(TIMER0_OVF_vect) {
 	if (contador_PWM >= 255) {
 		contador_PWM = 0;
 	}
-	TCNT0 = 255;
+	TCNT0 = 0;
 }
